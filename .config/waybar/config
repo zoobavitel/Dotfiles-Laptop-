@@ -1,0 +1,208 @@
+{
+  "layer": "top",
+  "position": "top",
+  "mod": "dock",
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  "height": 43,
+
+  "modules-left": [
+    "custom/powermenu",
+    "clock",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "mpris"
+  ],
+  "modules-right": [
+    "custom/mic",
+    "pulseaudio",
+    "battery",
+    "backlight",
+    "custom/pacman",
+    "tray"
+  ],
+
+  "hyprland/window": { "format": "{}" },
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "format": { "1":"1","2":"2","3":"3","4":"4","5":"5","6":"6","7":"7" },
+    "all-outputs": true,
+    "on-click": "activate"
+  },
+
+  "custom/powermenu": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "exec wlogout -p layer-shell"
+  },
+
+  "tray": {
+    "icon-size": 22,
+    "spacing": 10
+  },
+
+  "cpu": {
+    "interval": 1,
+    "format": "  {}%"
+  },
+
+  "memory": {
+    "interval": 1,
+    "format": "  {}%"
+  },
+
+  "clock": {
+    "format": "{:%I:%M }",
+    "format-alt": "  {:%a, %b %e }",
+    "tooltip-format": "<tt><big>{calendar}</big></tt>"
+  },
+
+  "backlight": {
+    "device": "amdgpu_bl2",
+    "tooltip": false,
+    "scroll-step": 5,
+    "format": "{icon} {percent}%",
+    "format-icons": ["🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘"],
+    "on-scroll-up": "brightnessctl set 10%+",
+    "on-scroll-down": "brightnessctl set 10%-",
+    "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'",
+    "min-length": 6
+  },
+
+
+  "battery": {
+    "states": { "good":95, "warning":30, "critical":20 },
+    "format": "{icon} {capacity}%",
+    "format-charging": "🔌 {capacity}%",
+    "format-plugged": "🔋 {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": [
+      "","","","","","","","","","",""
+    ]
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "tooltip": false,
+    "format-muted": " Muted",
+    "on-click": "pamixer -t",
+    "on-click-right": "exec pavucontrol",
+    "on-scroll-up": "pamixer -i 5 --allow-boost=true --set-limit=130",
+    "on-scroll-down": "pamixer -d 5 --allow-boost=true --set-limit=130",
+    "scroll-step": 5,
+    "format-icons": {
+      "headphone":" ",
+      "hands-free":" ",
+      "headset":" ",
+      "phone":" ",
+      "portable":" ",
+      "car":" ",
+      "default":[" "," "," "]
+    }
+  },
+
+  "custom/pacman": {
+    "format": "  {}",
+    "interval": 100,
+    "exec": "~/.local/scripts/checkupdate",
+    "exec-if": "exit 0",
+    "on-click": "kitty -e sudo pacman -Syu"
+  },
+
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "󰍮 {volume}%",
+    "format-source-muted": "󰍮 Muted",
+    "on-click": "pamixer --default-source -t",
+    "on-scroll-up": "pamixer --default-source -i 5",
+    "on-scroll-down": "pamixer --default-source -d 5",
+    "scroll-step": 5
+  },
+
+  "network": {
+    "interface": "wlan0",
+    "tooltip": false,
+    "tooltip-format-ethernet": "{ifname} ",
+    "interval": 2,
+    "format": " {bandwidthDownBits}",
+    "format-alt": " {bandwidthUpBits}"
+  },
+
+  "bluetooth": {
+    "format": " {status}",
+    "format-disabled": "",
+    "format-connected": " {num_connections}",
+    "tooltip-format": "{device_alias}",
+    "tooltip-format-connected": " {device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}"
+  },
+
+  "mpris": {
+    "title-len": 40,
+    "interval": 1,
+    "album-len": 0,
+    "max-len": 60,
+    "format": "{player_icon} {artist} - {title}",
+    "format-paused": "{player_icon} {artist} - {title}",
+    "player-icons": {
+      "default":"▶","mpv":"🎵","spotify":" ","brave":""
+    },
+    "status-icons": { "paused":"" },
+    "ignored-players": ["vlc","brave"]
+  },
+
+  "mpd": {
+    "format": "{stateIcon} {artist} - {title}",
+    "format-disconnected": "Disconnected ",
+    "format-stopped": "{stateIcon} {artist} - {title}",
+    "interval": 2,
+    "consume-icons": { "on":" " },
+    "repeat-icons": { "on":" " },
+    "single-icons": { "on":" 1 " },
+    "state-icons": { "paused":" ","playing":" " },
+    "tooltip-format": "MPD (connected)",
+    "tooltip-format-disconnected": "MPD (disconnected)"
+  },
+
+  "custom/mic": {
+    "exec": "~/.config/waybar/scripts/mic_status.sh",
+    "tooltip": false,
+    "interval": 10,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+  },
+
+  "custom/gfx": {
+    "exec": "~/.config/waybar/scripts/gfx_status.sh",
+    "return-type": "json",
+    "interval": 10,
+    "tooltip": true
+  },
+
+    "custom/asus_profile": {
+  "exec": "~/.config/waybar/scripts/asus_profile.sh",
+  "return-type": "json",
+  "format": "{text}",
+  "tooltip": false,
+  "interval": 10
+  },
+
+  "custom/refresh": {
+    "exec": "~/.config/waybar/scripts/refresh_rate.sh",
+    "return-type": "json",
+    "interval": 2,
+    "tooltip": false
+  },
+
+  "custom/pomodoro": {
+    "exec": "i3-gnome-pomodoro status --format=waybar --show-seconds | awk '{gsub(/Pomodoro /,\"\")}1'",
+    "return-type": "json",
+    "interval": 1,
+    "format": " {}",
+    "on-click": "i3-gnome-pomodoro toggle",
+    "on-middle-click": "i3-gnome-pomodoro stop",
+    "on-right-click": "i3-gnome-pomodoro start-stop"
+  }
+}

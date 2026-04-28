@@ -1,0 +1,24 @@
+[Added Associations]
+application/pdf=mupdf-4.desktop;mupdf-3.desktop;
+application/vnd.microsoft.portable-executable=com.github.Matoking.protontricks.desktop;
+application/x-tiled-tsx=code-4.desktop;code-3.desktop;
+application/x-trash=code-3.desktop;vim-2.desktop;
+image/png=mupdf-2.desktop;
+text/plain=code-4.desktop;code-2.desktop;code.desktop;
+video/mp4=vlc-4.desktop;vlc-2.desktop;
+video/x-matroska=vlc-3.desktop;
+
+[Default Applications]
+application/pdf=mupdf-4.desktop;
+application/x-tiled-tsx=code-4.desktop;
+application/x-trash=code-3.desktop;
+image/png=mupdf-2.desktop;
+inode/directory=thunar.desktop
+text/html=brave-browser.desktop
+text/plain=code-4.desktop;
+video/mp4=vlc-4.desktop;
+video/x-matroska=vlc-3.desktop;
+x-scheme-handler/cfauth=curseforge-url-handler.desktop
+x-scheme-handler/http=brave-browser.desktop
+x-scheme-handler/https=brave-browser.desktop
+x-scheme-handler/mailto=brave-browser.desktop
