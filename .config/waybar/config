@@ -79,9 +79,12 @@
     "format-charging": "🔌 {capacity}%",
     "format-plugged": "🔋 {capacity}%",
     "format-alt": "{time} {icon}",
-    "format-icons": [
-      "","","","","","","","","","",""
-    ]
+    "format-icons": {
+	"good": "🔋",
+	"warning":"🪫",
+    	"critical": "🪫",
+    	"default": "🔋"
+    }
   },
 
   "pulseaudio": {
