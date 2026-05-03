@@ -15,4 +15,3 @@ else
     hyprctl keyword monitor "$MONITOR,1920x1080@144,0x0,1,vrr,1"
     notify-send "Display" "Refresh rate → 144Hz" -i video-display
 fi
-
