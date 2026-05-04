@@ -16,6 +16,7 @@
     "mpris"
   ],
   "modules-right": [
+    "custom/refresh",
     "custom/mic",
     "pulseaudio",
     "battery",
