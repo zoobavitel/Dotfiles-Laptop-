@@ -17,6 +17,8 @@
   ],
   "modules-right": [
     "custom/refresh",
+    "custom/gfx",
+    "custom/asus_profile",
     "custom/mic",
     "pulseaudio",
     "battery",
@@ -181,16 +183,17 @@
   "custom/gfx": {
     "exec": "~/.config/waybar/scripts/gfx_status.sh",
     "return-type": "json",
-    "interval": 10,
-    "tooltip": true
+    "format": "{text}",
+    "tooltip": false,
+    "interval": 10
   },
 
-    "custom/asus_profile": {
-  "exec": "~/.config/waybar/scripts/asus_profile.sh",
-  "return-type": "json",
-  "format": "{text}",
-  "tooltip": false,
-  "interval": 10
+  "custom/asus_profile": {
+    "exec": "~/.config/waybar/scripts/asus_profile.sh",
+    "return-type": "json",
+    "format": "{text}",
+    "tooltip": false,
+    "interval": 10
   },
 
   "custom/refresh": {
