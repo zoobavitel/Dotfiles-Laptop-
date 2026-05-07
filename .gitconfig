@@ -1,0 +1,7 @@
+[user]
+	email = criszbav@gmail.com
+	name = zoobavitel
+[core]
+	editor = cursor
+[credential]
+	helper = store

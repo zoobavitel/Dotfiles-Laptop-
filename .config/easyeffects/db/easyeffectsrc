@@ -1,0 +1,13 @@
+[StreamInputs]
+inputDevice=alsa_input.pci-0000_04_00.6.analog-stereo
+plugins=gate#0,stereo_tools#0,rnnoise#0
+visiblePage=pluginsPage
+visiblePlugin=stereo_tools#0
+
+[StreamOutputs]
+outputDevice=alsa_output.pci-0000_04_00.6.analog-stereo
+
+[Window]
+height=1019
+visiblePresetSheetPage=communityPage
+width=349

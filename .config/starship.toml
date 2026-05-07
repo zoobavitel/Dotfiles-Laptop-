@@ -1,9 +1,12 @@
 #format = """
 #[╭─user───❯](bold blue) $username
 #[┣─system─❯](bold yellow) $hostname
-#[┣─project❯](bold red) $directory$rust$git_branch$git_status$package$golang$terraform$docker_context$python$docker_context$nodejs
+#[┣─project❯](bold red) $directory$rust$git_branch$git_status$package$golang$terraform$docker_context$python$nodejs
 #[╰─cmd────❯](bold green) 
 #"""
+format = """
+$directory$git_branch$git_status
+$character"""
 [username]
 style_user = "green bold"
 style_root = "red bold"
@@ -13,21 +16,28 @@ show_always = false
 
 [hostname]
 ssh_only = false
-format = 'on [MacBook-Pro-14](bold yellow) '
+format = 'on [MADVILLAINY](bold yellow) '
 trim_at = "."
 disabled = true
 
 # Replace the "❯" symbol in the prompt with "➜"
-[character]                            # The name of the module we are configuring is "character"
-success_symbol = "[﬌](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-error_symbol = "[✗](bold red)"
-#  
+
+[character]
+success_symbol = "[>](bold white)"
+error_symbol = "[>](bold red)"
+
+
 # configure directory
+
 [directory]
-read_only = " "
-truncation_length = 10
-truncate_to_repo = true # truncates directory to root folder if in github repo
-style = "#eba0ac"
+format = "C:\\\\[$path]($style)"
+style = "bold white"
+truncation_length = 99
+truncate_to_repo = false
+read_only = " [RO]"
+
+
+
 
 [cmd_duration]
 min_time = 4

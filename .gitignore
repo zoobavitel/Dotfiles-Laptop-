@@ -1,2 +1,5 @@
 *.bak
 *.backup
+.config/sunshine/credentials/
+.config/sunshine/sunshine.log
+.config/sunshine/sunshine_state.json
