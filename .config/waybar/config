@@ -75,7 +75,6 @@
     "min-length": 6
   },
 
-
   "battery": {
     "states": { "good":95, "warning":30, "critical":20 },
     "format": "{icon} {capacity}%",
@@ -83,10 +82,10 @@
     "format-plugged": "🔋 {capacity}%",
     "format-alt": "{time} {icon}",
     "format-icons": {
-	"good": "🔋",
-	"warning":"🪫",
-    	"critical": "🪫",
-    	"default": "🔋"
+      "good": "🔋",
+      "warning":"🪫",
+      "critical": "🪫",
+      "default": "🔋"
     }
   },
 
@@ -186,7 +185,7 @@
     "format": "{text}",
     "tooltip": true,
     "interval": 10,
-    "on-click": "bash -lc 'current=$(supergfxctl -g 2>/dev/null); if [ \"$current\" = \"Hybrid\" ]; then supergfxctl --mode Integrated; else supergfxctl --mode Hybrid; fi'"
+    "on-click": "~/.config/waybar/scripts/toggle_gfx.sh"
   },
 
   "custom/asus_profile": {
@@ -195,7 +194,7 @@
     "format": "{text}",
     "tooltip": true,
     "interval": 10,
-    "on-click": "bash -lc 'current=$(asusctl profile --profile-get 2>/dev/null | grep -i \"Active profile\" | awk -F\"is \" '\''{print $2}'\'' | xargs); case \"$current\" in Quiet) asusctl profile -P Balanced ;; Balanced) asusctl profile -P Performance ;; Performance) asusctl profile -P Quiet ;; *) asusctl profile -P Quiet ;; esac'"
+    "on-click": "~/.config/waybar/scripts/toggle_asus_profile.sh"
   },
 
   "custom/refresh": {
