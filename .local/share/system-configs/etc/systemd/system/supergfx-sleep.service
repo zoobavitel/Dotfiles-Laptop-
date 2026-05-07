@@ -1,0 +1,13 @@
+[Unit]
+Description=Switch to integrated GPU before sleep
+Before=sleep.target
+StopWhenUnneeded=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/supergfxctl --mode Integrated
+ExecStop=/usr/bin/supergfxctl --mode Hybrid
+
+[Install]
+WantedBy=sleep.target
