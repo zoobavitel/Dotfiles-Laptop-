@@ -184,16 +184,18 @@
     "exec": "~/.config/waybar/scripts/gfx_status.sh",
     "return-type": "json",
     "format": "{text}",
-    "tooltip": false,
-    "interval": 10
+    "tooltip": true,
+    "interval": 10,
+    "on-click": "bash -lc 'current=$(supergfxctl -g 2>/dev/null); if [ \"$current\" = \"Hybrid\" ]; then supergfxctl --mode Integrated; else supergfxctl --mode Hybrid; fi'"
   },
 
   "custom/asus_profile": {
     "exec": "~/.config/waybar/scripts/asus_profile.sh",
     "return-type": "json",
     "format": "{text}",
-    "tooltip": false,
-    "interval": 10
+    "tooltip": true,
+    "interval": 10,
+    "on-click": "bash -lc 'current=$(asusctl profile --profile-get 2>/dev/null | grep -i \"Active profile\" | awk -F\"is \" '\''{print $2}'\'' | xargs); case \"$current\" in Quiet) asusctl profile -P Balanced ;; Balanced) asusctl profile -P Performance ;; Performance) asusctl profile -P Quiet ;; *) asusctl profile -P Quiet ;; esac'"
   },
 
   "custom/refresh": {

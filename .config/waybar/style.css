@@ -98,7 +98,11 @@ tooltip {
 #pulseaudio,
 #network,
 #bluetooth,
-#custom-pacman {
+#custom-pacman,
+#custom-refresh,
+#custom-gfx,
+#custom-asus_profile,
+#custom-mic {
   margin: 3px 2px;
   padding: 2px 8px;
   background: #c0c0c0;
@@ -107,6 +111,31 @@ tooltip {
   border-left: 1px solid #ffffff;
   border-right: 1px solid #808080;
   border-bottom: 1px solid #808080;
+}
+
+#custom-refresh:hover,
+#custom-gfx:hover,
+#custom-asus_profile:hover,
+#custom-mic:hover,
+#pulseaudio:hover,
+#network:hover,
+#bluetooth:hover,
+#custom-pacman:hover {
+  background: #d4d0c8;
+}
+
+#custom-refresh:active,
+#custom-gfx:active,
+#custom-asus_profile:active,
+#custom-mic:active,
+#pulseaudio:active,
+#network:active,
+#bluetooth:active,
+#custom-pacman:active {
+  border-top: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
 }
 
 /* Media player */

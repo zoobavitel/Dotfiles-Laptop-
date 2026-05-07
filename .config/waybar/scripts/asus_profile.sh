@@ -7,23 +7,27 @@ case "$asusctl_mode" in
     icon="🔈"
     label="Quiet"
     class="quiet"
+    next_profile="Balanced"
     ;;
   Balanced)
     icon="🖥"
     label="Balanced"
     class="balanced"
+    next_profile="Performance"
     ;;
   Performance)
     icon="⚡"
     label="Turbo"
     class="performance"
+    next_profile="Quiet"
     ;;
   *)
     icon="❔"
     label="N/A"
     class="unknown"
+    next_profile="Quiet"
     ;;
  esac
 
-printf '{"text":"%s %s","class":"%s","tooltip":"ASUS profile: %s"}\n' \
-  "$icon" "$label" "$class" "$label"
+printf '{"text":"%s %s","class":"%s","tooltip":"ASUS profile: %s | Click to switch to %s"}\n' \
+  "$icon" "$label" "$class" "$label" "$next_profile"
