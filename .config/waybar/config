@@ -10,7 +10,8 @@
   "modules-left": [
     "custom/powermenu",
     "clock",
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "custom/minimized"
   ],
   "modules-center": [
     "mpris"
@@ -108,6 +109,15 @@
       "default":[" "," "," "]
     }
   },
+
+  "custom/minimized": {
+  "exec": "~/.config/waybar/scripts/minimized_status.sh",
+  "return-type": "json",
+  "interval": 2,
+  "on-click": "bash ~/.config/waybar/scripts/restore_minimized.sh",
+  "on-click-right": "bash ~/.config/waybar/scripts/restore_minimized.sh",
+  "tooltip": false
+},
 
   "custom/pacman": {
     "format": "  {}",
