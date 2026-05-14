@@ -1,8 +1,13 @@
 #!/bin/bash
-
 current=$(supergfxctl -g 2>/dev/null)
+
 if [ "$current" = "Hybrid" ]; then
-  supergfxctl --mode Integrated
+  target="Integrated"
 else
-  supergfxctl --mode Hybrid
+  target="Hybrid"
 fi
+
+supergfxctl --mode "$target"
+notify-send "GPU Mode" "Switching to $target — logging out" -u critical -t 2000
+sleep 2
+hyprctl dispatch exit
