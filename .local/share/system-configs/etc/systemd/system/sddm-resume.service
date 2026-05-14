@@ -1,12 +1,11 @@
-
 [Unit]
 Description=Restart SDDM on resume
-After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target supergfx-sleep.service
 
 [Service]
 Type=oneshot
+ExecStartPre=/bin/sleep 5
 ExecStart=/usr/bin/systemctl restart sddm
 
 [Install]
 WantedBy=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
-
