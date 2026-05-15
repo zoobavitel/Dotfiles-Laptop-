@@ -1,33 +1,11 @@
 #!/bin/bash
-
-current_mode=$(supergfxctl -g 2>/dev/null || echo "unknown")
-
-case "$current_mode" in
-  Hybrid)
-    icon="🖵"
-    label="Hybrid"
-    class="hybrid"
-    next_mode="Integrated"
-    ;;
-  Integrated)
-    icon="💾"
-    label="iGPU"
-    class="integrated"
-    next_mode="Hybrid"
-    ;;
-  AsusMuxDgpu|Dedicated|Vfio|Compute)
-    icon="⚙"
-    label="$current_mode"
-    class="dedicated"
-    next_mode="Hybrid"
-    ;;
+status=$(cat /sys/bus/pci/devices/0000:01:00.0/power/runtime_status 2>/dev/null || echo "unknown")
+case "$status" in
+  active)
+    icon="🖵"; label="dGPU on"; class="hybrid" ;;
+  suspended)
+    icon="💾"; label="dGPU off"; class="integrated" ;;
   *)
-    icon="❔"
-    label="$current_mode"
-    class="unknown"
-    next_mode="Hybrid"
-    ;;
- esac
-
-printf '{"text":"%s %s","class":"%s","tooltip":"GPU mode: %s | Click to switch to %s"}\n' \
-  "$icon" "$label" "$class" "$current_mode" "$next_mode"
+    icon="❔"; label="$status"; class="unknown" ;;
+esac
+printf '{"text":"%s %s","class":"%s","tooltip":"dGPU power: %s"}\n' "$icon" "$label" "$class" "$status"
