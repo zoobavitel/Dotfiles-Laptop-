@@ -1,11 +1,11 @@
 /* Win95 Start Menu Theme for Rofi 2.0 (rofi-wayland) */
-
 configuration {
     show-icons:         false;
     font:               "JetBrainsMono Nerd Font 11";
     hover-select:       true;
     me-select-entry:    "";
     me-accept-entry:    "MousePrimary";
+    color-normal:       "#c0c0c0, #000000, #c0c0c0, #000080, #ffffff";
 }
 
 * {
@@ -16,7 +16,6 @@ configuration {
     highlight:  #000080;
     hilite-fg:  #ffffff;
     teal:       #008080;
-
     background-color:   @bg;
     text-color:         @fg;
 }
@@ -66,4 +65,42 @@ entry {
     background-color:   @bg-light;
     text-color:         @fg;
     padding:            4px 6px;
-    border
+    border:             1px;
+    border-color:       @bg-dark;
+    placeholder:        "Type to search...";
+    placeholder-color:  @bg-dark;
+}
+
+listview {
+    background-color:   @bg;
+    columns:            1;
+    lines:              9;
+    spacing:            0px;
+    padding:            2px 0;
+    scrollbar:          false;
+    fixed-height:       false;
+    dynamic:            true;
+}
+
+element {
+    background-color:   @bg;
+    text-color:         @fg;
+    padding:            5px 8px;
+}
+
+element selected.normal {
+    background-color:   @highlight;
+    text-color:         #ffffff;
+}
+
+element-text {
+    background-color:   inherit;
+    text-color:         inherit;
+    highlight:          none;
+}
+
+element-text selected.normal {
+    background-color:   #000080;
+    text-color:         #ffffff;
+    highlight:          none;
+}

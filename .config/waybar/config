@@ -38,9 +38,9 @@
   },
 
   "custom/powermenu": {
-    "format": "",
+    "format": "  Start",
     "tooltip": false,
-    "on-click": "exec wlogout -p layer-shell"
+    "on-click": "exec ~/.local/scripts/win95-start.sh"
   },
 
   "tray": {
