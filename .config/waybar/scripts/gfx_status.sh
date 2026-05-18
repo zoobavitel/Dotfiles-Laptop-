@@ -1,11 +1,11 @@
 #!/bin/bash
-status=$(cat /sys/bus/pci/devices/0000:01:00.0/power/runtime_status 2>/dev/null || echo "unknown")
-case "$status" in
-  active)
-    icon="🖵"; label="dGPU on"; class="hybrid" ;;
-  suspended)
-    icon="💾"; label="dGPU off"; class="integrated" ;;
+current=$(supergfxctl -g 2>/dev/null || echo "unknown")
+case "$current" in
+  Hybrid)
+    icon="🖵"; label="Hybrid"; class="hybrid"; next="Integrated" ;;
+  Integrated)
+    icon="💾"; label="iGPU"; class="integrated"; next="Hybrid" ;;
   *)
-    icon="❔"; label="$status"; class="unknown" ;;
+    icon="❔"; label="$current"; class="unknown"; next="Hybrid" ;;
 esac
-printf '{"text":"%s %s","class":"%s","tooltip":"dGPU power: %s"}\n' "$icon" "$label" "$class" "$status"
+printf '{"text":"%s %s","class":"%s","tooltip":"GPU: %s | Click to switch to %s"}\n' "$icon" "$label" "$class" "$current" "$next"
