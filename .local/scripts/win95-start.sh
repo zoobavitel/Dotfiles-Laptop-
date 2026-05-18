@@ -18,7 +18,9 @@ main_menu() {
     echo "▶ Run..."
     echo "───────────"
     echo "🚪 Log Out"
-    echo "💤 Sleep"
+    echo "💤 Suspend"
+    echo "🌙 Hibernate"
+    echo "😴 Sleep"
     echo "🔄 Restart"
     echo "⏻ Shut Down"
 }
@@ -96,7 +98,9 @@ run_menu() {
 }
 
 do_logout()   { hyprctl dispatch exit; }
-do_sleep()    { systemctl suspend; }
+do_suspend()  { systemctl suspend; }
+do_hibernate() { systemctl hibernate; }
+do_sleep()    { systemctl suspend-then-hibernate; }
 do_restart()  { systemctl reboot; }
 do_shutdown() { systemctl poweroff; }
 
@@ -116,7 +120,9 @@ case "$selected" in
     "🔍 Find Files")  find_menu ;;
     "▶ Run...")        run_menu ;;
     "🚪 Log Out")     do_logout ;;
-    "💤 Sleep")       do_sleep ;;
+    "💤 Suspend")     do_suspend ;;
+    "🌙 Hibernate")   do_hibernate ;;
+    "😴 Sleep")       do_sleep ;;
     "🔄 Restart")     do_restart ;;
     "⏻ Shut Down")   do_shutdown ;;
     "───────────")     ;; # separator
