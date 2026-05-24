@@ -1,13 +1,12 @@
 /* Win95 Start Menu Theme for Rofi 2.0 (rofi-wayland) */
 configuration {
-    show-icons:         false;
+    show-icons:         true;
     font:               "JetBrainsMono Nerd Font 11";
     hover-select:       true;
     me-select-entry:    "";
     me-accept-entry:    "MousePrimary";
     color-normal:       "#c0c0c0, #000000, #c0c0c0, #000080, #ffffff";
 }
-
 * {
     bg:         #c0c0c0;
     bg-dark:    #808080;
@@ -19,7 +18,6 @@ configuration {
     background-color:   @bg;
     text-color:         @fg;
 }
-
 window {
     anchor:             southwest;
     location:           southwest;
@@ -31,13 +29,11 @@ window {
     border-color:       @bg-light;
     children:           [ horibox ];
 }
-
 horibox {
     orientation:        horizontal;
     children:           [ textbox-sidebar, mainbox ];
     background-color:   @bg;
 }
-
 textbox-sidebar {
     expand:             false;
     content:            "  ";
@@ -45,14 +41,12 @@ textbox-sidebar {
     text-color:         @teal;
     padding:            200px 12px;
 }
-
 mainbox {
     orientation:        vertical;
     children:           [ inputbar, listview ];
     background-color:   @bg;
     padding:            2px;
 }
-
 inputbar {
     children:           [ entry ];
     background-color:   @bg;
@@ -60,7 +54,6 @@ inputbar {
     border:             0 0 1px 0;
     border-color:       @bg-dark;
 }
-
 entry {
     background-color:   @bg-light;
     text-color:         @fg;
@@ -70,7 +63,6 @@ entry {
     placeholder:        "Type to search...";
     placeholder-color:  @bg-dark;
 }
-
 listview {
     background-color:   @bg;
     columns:            1;
@@ -81,24 +73,29 @@ listview {
     fixed-height:       false;
     dynamic:            true;
 }
-
 element {
     background-color:   @bg;
     text-color:         @fg;
-    padding:            5px 8px;
+    padding:            4px 8px;
+    spacing:            6px;
+    orientation:        horizontal;
+    children:           [ element-icon, element-text ];
 }
-
+element-icon {
+    size:               16px;
+    background-color:   inherit;
+    text-color:         inherit;
+}
 element selected.normal {
     background-color:   @highlight;
     text-color:         #ffffff;
 }
-
 element-text {
     background-color:   inherit;
     text-color:         inherit;
     highlight:          none;
+    vertical-align:     0.5;
 }
-
 element-text selected.normal {
     background-color:   #000080;
     text-color:         #ffffff;
