@@ -1,11 +1,19 @@
 #!/bin/bash
-current=$(supergfxctl -g 2>/dev/null || echo "unknown")
-case "$current" in
-  Hybrid)
-    icon="🖵"; label="Hybrid"; class="hybrid"; next="Integrated" ;;
-  Integrated)
-    icon="💾"; label="iGPU"; class="integrated"; next="Hybrid" ;;
-  *)
-    icon="❔"; label="$current"; class="unknown"; next="Hybrid" ;;
-esac
-printf '{"text":"%s %s","class":"%s","tooltip":"GPU: %s | Click to switch to %s"}\n' "$icon" "$label" "$class" "$current" "$next"
+
+power_file=$(ls /proc/driver/nvidia/gpus/*/power 2>/dev/null | head -1)
+
+if [ -z "$power_file" ]; then
+  printf '{"text":"❔ GPU","class":"unknown","tooltip":"NVIDIA driver not loaded"}
+'
+  exit 0
+fi
+
+video_mem=$(grep "Video Memory:" "$power_file" | awk '{print $NF}')
+
+if [ "$video_mem" = "Off" ]; then
+  printf '{"text":"💤 dGPU","class":"suspended","tooltip":"NVIDIA GPU suspended (runtime D3)"}
+'
+else
+  printf '{"text":"🖵 dGPU","class":"active","tooltip":"NVIDIA GPU active"}
+'
+fi
