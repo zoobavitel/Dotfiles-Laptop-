@@ -1,6 +1,7 @@
 [Unit]
 Description=Switch to integrated GPU before sleep
 Before=sleep.target
+After=supergfxd.service
 StopWhenUnneeded=yes
 
 [Service]
