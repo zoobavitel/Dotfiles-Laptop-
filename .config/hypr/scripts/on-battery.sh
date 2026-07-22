@@ -1,0 +1,12 @@
+#!/bin/bash
+# Wait for Hyprland socket to be available
+sleep 2
+
+# Balanced on battery — Quiet was too aggressive on this 8GB G14.
+asusctl profile set Balanced
+hyprctl keyword monitor eDP-1,1920x1080@60,0x0,1,vrr,0
+
+# Keep hybrid (dGPU available). asusctl armoury replaces deprecated supergfxctl.
+# asusctl armoury set dgpu_disable 0 >/dev/null 2>&1 || true
+
+notify-send "Battery Mode" "60Hz + Balanced (hybrid GPU)."
