@@ -1,4 +1,2 @@
 [sie][Gate#0]
-attack=5
-reduction=-64
-release=200
+bypass=true

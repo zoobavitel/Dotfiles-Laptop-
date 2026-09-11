@@ -1,11 +1,13 @@
 #!/bin/bash
-if pgrep -f "rofi.*win95-start" > /dev/null 2>&1; then
-    pkill -f "rofi.*win95-start"
+# Toggle: any rofi instance from this menu (keep show-icons: true in theme).
+if pgrep -x rofi >/dev/null 2>&1; then
+    pkill -x rofi
     exit 0
 fi
 
 ROFI_THEME="$HOME/.config/rofi/win95-start.rasi"
-ROFI_COMMON="-theme $ROFI_THEME -kb-cancel Escape,Super_L -show-icons"
+# Icons stay on (rasi show-icons + -show-icons). Pin Chicago95 to avoid scanning every theme.
+ROFI_COMMON="-theme $ROFI_THEME -kb-cancel Escape,Super_L -show-icons -icon-theme SE98"
 
 main_menu() {
     printf 'Programs\x00icon\x1ffolder\n'
@@ -16,7 +18,6 @@ main_menu() {
     printf 'Log Out\x00icon\x1fsystem-log-out\n'
     printf 'Suspend\x00icon\x1fsystem-suspend\n'
     printf 'Hibernate\x00icon\x1fsystem-hibernate\n'
-    printf 'Sleep\x00icon\x1fsystem-suspend-hibernate\n'
     printf 'Restart\x00icon\x1fsystem-reboot\n'
     printf 'Shut Down\x00icon\x1fsystem-shutdown\n'
 }
@@ -26,6 +27,7 @@ programs_menu() {
         $ROFI_COMMON \
         -display-drun "Programs" \
         -drun-display-format "{name}" \
+        -drun-use-desktop-cache \
         -scroll-method 0
 }
 
@@ -72,7 +74,6 @@ run_menu() {
 do_logout()    { hyprctl dispatch exit; }
 do_suspend()   { systemctl suspend; }
 do_hibernate() { systemctl hibernate; }
-do_sleep()     { systemctl suspend-then-hibernate; }
 do_restart()   { systemctl reboot; }
 do_shutdown()  { systemctl poweroff; }
 
@@ -94,7 +95,6 @@ case "$selected" in
     "Log Out")     do_logout ;;
     "Suspend")     do_suspend ;;
     "Hibernate")   do_hibernate ;;
-    "Sleep")       do_sleep ;;
     "Restart")     do_restart ;;
     "Shut Down")   do_shutdown ;;
 esac

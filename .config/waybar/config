@@ -124,7 +124,7 @@
     "interval": 100,
     "exec": "~/.local/scripts/checkupdate",
     "exec-if": "exit 0",
-    "on-click": "kitty -e sudo pacman -Syu"
+    "on-click": "kitty -e bash -lc 'yay -Syu; echo; read -n1 -r -p \"Press any key to close...\"'"
   },
 
   "pulseaudio#microphone": {

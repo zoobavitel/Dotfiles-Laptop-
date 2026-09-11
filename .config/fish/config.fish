@@ -7,8 +7,6 @@ if status is-interactive
     fish_add_path ~/.local/bin
     # STARSHIP
     starship init fish | source
-    # ANIFETCH
-    anifetch example.mp4 -W 80 -H 22 -r 24 -ca "--symbols block --fg-only"
 end
 
 
