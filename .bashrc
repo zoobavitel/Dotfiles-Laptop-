@@ -11,3 +11,9 @@ PS1='[\u@\h \W]\$ '
 eval "$(starship init bash)"
 export PATH="$HOME/.local/bin:$PATH"
 alias dot='git --git-dir=/home/z/git/Dotfiles-Laptop-/.git --work-tree=/home/z'
+
+. "$HOME/.local/share/../bin/env"
+
+# aur-guard
+alias yay='yay-guard'
+alias paru='paru-guard'

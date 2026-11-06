@@ -12,7 +12,9 @@ SELECTED=$(echo "$MENU" | wofi --dmenu --prompt "Restore:")
 IDX=$(echo "$SELECTED" | awk '{print $1}')
 ADDRESS=$(echo "$WINDOWS_JSON" | jq -r ".[$IDX].address")
 CURRENT_WS=$(hyprctl activeworkspace -j | jq -r '.id')
-hyprctl dispatch movetoworkspace "$CURRENT_WS,address:$ADDRESS"
+# 0.57+ takes Lua; 0.56 takes the old dispatcher. Try Lua first.
+hyprctl dispatch "hl.dsp.window.move({ window = \"address:$ADDRESS\", workspace = $CURRENT_WS })" | grep -q ok \
+    || hyprctl dispatch movetoworkspace "$CURRENT_WS,address:$ADDRESS"
 
 
 

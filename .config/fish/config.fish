@@ -5,10 +5,17 @@ if status is-interactive
     if command -q kitten
         alias ssh="kitten ssh"
     end
-    alias dot='git --git-dir=/home/z/git/Dotfiles-Laptop-/.git --work-tree=/home/z'
+    # dot = this machine's dotfiles repo (kitten ssh copies this file between hosts)
+    switch (prompt_hostname)
+        case madness
+            alias dot='git --git-dir=/home/z/git/Dotfiles-Desktop-/.git --work-tree=/home/z'
+        case '*'
+            alias dot='git --git-dir=/home/z/git/Dotfiles-Laptop-/.git --work-tree=/home/z'
+    end
     # PATH
     fish_add_path ~/.local/bin
     # STARSHIP
+    set -gx STARSHIP_CONFIG ~/.config/starship.toml
     starship init fish | source
 end
 

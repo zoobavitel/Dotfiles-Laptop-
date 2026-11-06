@@ -5,9 +5,18 @@ if pgrep -x rofi >/dev/null 2>&1; then
     exit 0
 fi
 
+pw-play "$HOME/.local/share/sounds/Windows95/stereo/menu-popup.wav" &
 ROFI_THEME="$HOME/.config/rofi/win95-start.rasi"
 # Icons stay on (rasi show-icons + -show-icons). Pin Chicago95 to avoid scanning every theme.
 ROFI_COMMON="-theme $ROFI_THEME -kb-cancel Escape,Super_L -show-icons -icon-theme SE98"
+
+can_hibernate() {
+    # logind CanHibernate respects AllowHibernation= and swap/resume readiness
+    local reply
+    reply=$(busctl call org.freedesktop.login1 /org/freedesktop/login1 \
+        org.freedesktop.login1.Manager CanHibernate 2>/dev/null) || return 1
+    [[ "$reply" == 's "yes"' ]]
+}
 
 main_menu() {
     printf 'Programs\x00icon\x1ffolder\n'
@@ -17,18 +26,23 @@ main_menu() {
     printf '───────────\n'
     printf 'Log Out\x00icon\x1fsystem-log-out\n'
     printf 'Suspend\x00icon\x1fsystem-suspend\n'
-    printf 'Hibernate\x00icon\x1fsystem-hibernate\n'
+    if can_hibernate; then
+        printf 'Hibernate\x00icon\x1fsystem-hibernate\n'
+    fi
     printf 'Restart\x00icon\x1fsystem-reboot\n'
     printf 'Shut Down\x00icon\x1fsystem-shutdown\n'
 }
 
 programs_menu() {
+    # Reload cache so moves like /opt/unityhub -> /usr/bin/unityhub are picked up
     rofi -show drun \
         $ROFI_COMMON \
         -display-drun "Programs" \
         -drun-display-format "{name}" \
         -drun-use-desktop-cache \
-        -scroll-method 0
+        -drun-reload-desktop-cache \
+        -scroll-method 0 \
+        -no-hover-select
 }
 
 documents_menu() {
@@ -71,11 +85,11 @@ run_menu() {
     [ -n "$cmd" ] && eval "$cmd" &
 }
 
-do_logout()    { hyprctl dispatch exit; }
+do_logout()    { $HOME/.local/scripts/win95-session.sh logout; }
 do_suspend()   { systemctl suspend; }
 do_hibernate() { systemctl hibernate; }
-do_restart()   { systemctl reboot; }
-do_shutdown()  { systemctl poweroff; }
+do_restart()   { $HOME/.local/scripts/win95-session.sh restart; }
+do_shutdown()  { $HOME/.local/scripts/win95-session.sh shutdown; }
 
 selected=$(main_menu | rofi -dmenu \
     $ROFI_COMMON \

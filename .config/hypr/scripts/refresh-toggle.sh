@@ -9,9 +9,9 @@ CURRENT=$(hyprctl monitors -j | jq -r '.[] | select(.name == "'"$MONITOR"'") | .
 RATE=${CURRENT%.*}
 
 if [ "$RATE" -gt 100 ]; then
-    hyprctl keyword monitor "$MONITOR,1920x1080@60,0x0,1,vrr,1"
+    hyprctl eval "hl.monitor({ output = \"$MONITOR\", mode = \"1920x1080@60\", position = \"0x0\", scale = 1, vrr = 1 })"
     notify-send "Display" "Refresh rate → 60Hz" -i video-display
 else
-    hyprctl keyword monitor "$MONITOR,1920x1080@144,0x0,1,vrr,1"
+    hyprctl eval "hl.monitor({ output = \"$MONITOR\", mode = \"1920x1080@144\", position = \"0x0\", scale = 1, vrr = 1 })"
     notify-send "Display" "Refresh rate → 144Hz" -i video-display
 fi

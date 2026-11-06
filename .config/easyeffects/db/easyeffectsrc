@@ -1,6 +1,9 @@
 [NativePluginWindow]
 showNativePluginUi=true
 
+[Presets]
+lastLoadedOutputPreset=Dolby-Balanced
+
 [StreamInputs]
 inputDevice=alsa_input.pci-0000_04_00.6.analog-stereo
 plugins=rnnoise#0,compressor#0,limiter#0,expander#0,rnnoise#1,gate#0,equalizer#0,stereo_tools#0
@@ -8,10 +11,16 @@ visiblePage=pluginsPage
 visiblePlugin=equalizer#0
 
 [StreamOutputs]
+mostUsedPresets=Dolby-Balanced,Nothing,Dolby-Detailed
 outputDevice=alsa_output.pci-0000_04_00.6.analog-stereo
+plugins=convolver#0,equalizer#1,autogain#0,multiband_compressor#1,limiter#0
+usedPresets=Dolby-Balanced:20,Dolby-Detailed:3,Nothing:9
+visiblePage=pluginsPage
+visiblePlugin=autogain#0
 
 [Window]
 autostartOnLogin=true
-height=504
-visiblePage=inputPage
-width=946
+height=991
+outputAutoloadingFallbackPreset=Nothing
+outputAutoloadingUsesFallback=true
+width=1894
