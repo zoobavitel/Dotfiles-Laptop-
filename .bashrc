@@ -15,5 +15,4 @@ alias dot='git --git-dir=/home/z/git/Dotfiles-Laptop-/.git --work-tree=/home/z'
 . "$HOME/.local/share/../bin/env"
 
 # aur-guard
-alias yay='yay-guard'
 alias paru='paru-guard'
